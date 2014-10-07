@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>A Knockout.js photoapp</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/light.css" />
+</head>
+
+<body>
+    <article id="photoapp">
+        <header data-bind="if: title && desc">
+            <h1 data-bind="text: title"></h1>
+            <p data-bind="text: desc"></p>
+        </header>
+        <div class="controls">
+            <label for="sorts">Sort by: </label>
+            <select id="sorts" data-bind="foreach: sorts, event: { change: sortHandler }">
+                <option data-bind="text: name, value: name"></option>            
+            </select>   
+        </div>
+        <section role="main" class="photos" data-bind="foreach: photos">
+            <figure>
+                <img data-bind="attr: { src: url, alt: 'A picture of ' + title }" />
+                <figcaption><span data-bind="text: title"></span></figcaption>
+            </figure> 
+        </section>
+    </article>
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/knockout-3.2.0.js"></script>
+    <script src="js/thephotoapp.js"></script>
+    <script>
+        var myphotoapp = new Photoapp({
+            apiKey: '647d8fe2a8889b3d5250d2a8ac5bf4a1',
+            photosetId: '72157618303672395',
+             });
+    </script>
+</body>
+</html>
